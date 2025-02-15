@@ -1,0 +1,15 @@
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/bin/Debug/net9.0/LAB__1
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/bin/Debug/net9.0/LAB__1.deps.json
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/bin/Debug/net9.0/LAB__1.runtimeconfig.json
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/bin/Debug/net9.0/LAB__1.dll
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/bin/Debug/net9.0/LAB__1.pdb
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/LAB__1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/LAB__1.AssemblyInfoInputs.cache
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/LAB__1.AssemblyInfo.cs
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/LAB__1.csproj.CoreCompileInputs.cache
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/LAB__1.sourcelink.json
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/LAB__1.dll
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/refint/LAB__1.dll
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/LAB__1.pdb
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/LAB__1.genruntimeconfig.cache
+/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/Debug/net9.0/ref/LAB__1.dll
