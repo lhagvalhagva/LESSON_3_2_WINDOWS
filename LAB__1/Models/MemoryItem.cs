@@ -10,10 +10,5 @@ namespace LAB__1.Models
             this.value = value;
             // this.savedAt = DateTime.Now;
         }
-
-        public override string ToString()
-        {
-            return $"Value: {value}";
-        }
     }
 }

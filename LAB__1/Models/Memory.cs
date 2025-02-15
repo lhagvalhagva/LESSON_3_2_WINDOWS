@@ -1,11 +1,11 @@
-using System.Collections.Generic;
 using LAB__1.Models;
 
 namespace LAB__1.Models
 {
     public class Memory
     {
-        public List<MemoryItem> memoryItems { get; set;}
+
+        private List<MemoryItem> memoryItems;
 
         public Memory()
         {

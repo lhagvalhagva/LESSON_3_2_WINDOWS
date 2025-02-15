@@ -16,12 +16,15 @@ namespace LAB__1
             Console.WriteLine($"10 - 4 = {calculator.memory.GetLast().value}");
             
             calculator.memory.Clear();
-            Console.WriteLine("Memory history after clearing:");
+            Console.WriteLine("Calculator history cleared");
+            
+            calculator.Subtract(10, 4);
+            Console.WriteLine($"10 - 4 = {calculator.memory.GetLast().value}");
 
-            calculator.Subtract(20, 10);
+            Console.WriteLine($"20 - 10 = {calculator.Subtract(20, 10)}");
             Console.WriteLine($"20 - 10 = {calculator.memory.GetLast().value}");
 
-            Console.WriteLine("Memory history:");
+            Console.WriteLine("Calculator history:");
             foreach (var item in calculator.memory.GetAll())
             {
                 Console.WriteLine(item.value);

@@ -5,7 +5,7 @@ namespace LAB__1.Models
 {
     public class BasicCalculator : AbstractCalculator, IBasicOperations
     {
-        public Memory memory { get; set; } = new Memory();
+        public Memory memory = new Memory();
 
         public double Add(double a, double b)
         {
