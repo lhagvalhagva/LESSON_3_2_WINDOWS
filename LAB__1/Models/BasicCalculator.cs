@@ -1,4 +1,6 @@
-namespace Calculator.Models
+using LAB__1.Interfaces;
+
+namespace LAB__1.Models
 {
     public class BasicCalculator : AbstractCalculator, IBasicOperations
     {

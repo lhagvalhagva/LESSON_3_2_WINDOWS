@@ -1,4 +1,4 @@
-namespace Calculator.Interfaces
+namespace LAB__1.Interfaces
 {
     public interface IBasicOperations
     {
