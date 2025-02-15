@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/LAB__1.csproj",
-      "projectName": "LAB__1",
-      "projectPath": "/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/LAB__1.csproj",
+      "projectUniqueName": "/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/LAB.csproj",
+      "projectName": "LAB",
+      "projectPath": "/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/LAB.csproj",
       "packagesPath": "/Users/lhagvadorjbatulzii/.nuget/packages/",
       "outputPath": "/Users/lhagvadorjbatulzii/LESSON/lesson-3-2/WINDOWS/LABS/LAB__1/obj/",
       "projectStyle": "PackageReference",
