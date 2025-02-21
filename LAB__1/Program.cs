@@ -11,13 +11,13 @@ namespace LAB__1
 
             calculator.Add(5, 3);
             Console.WriteLine($"5 + 3 = {calculator.memory.GetLast().value}");
-            
+
             calculator.Subtract(10, 4);
             Console.WriteLine($"10 - 4 = {calculator.memory.GetLast().value}");
-            
+
             calculator.memory.Clear();
             Console.WriteLine("Calculator history cleared");
-            
+
             calculator.Subtract(10, 4);
             Console.WriteLine($"10 - 4 = {calculator.memory.GetLast().value}");
 

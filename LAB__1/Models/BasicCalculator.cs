@@ -24,7 +24,6 @@ namespace LAB__1.Models
             Result = a * b;
             return memory.Save(Result);
         }
-
         public double Divide(double a, double b)
         {
             Result = a / b;
