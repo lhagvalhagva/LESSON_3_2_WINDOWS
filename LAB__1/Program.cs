@@ -29,6 +29,14 @@ namespace LAB__1
             {
                 Console.WriteLine(item.value);
             }
+
+            Console.WriteLine("-=-=-=-=-=-=-=--=-=-=-=-=-=-=-");
+            calculator.Add(10);
+            Console.WriteLine($"10 + 10 = {calculator.memory.GetLast().value}");
+
+            calculator.Subtract(10);
+            Console.WriteLine($"10 - 10 = {calculator.memory.GetLast().value}");
+            Console.WriteLine("-=-=-=-=-=-=-=--=-=-=-=-=-=-=-");
         }
     }
 }

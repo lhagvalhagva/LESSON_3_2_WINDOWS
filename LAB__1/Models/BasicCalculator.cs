@@ -3,8 +3,15 @@ using LAB__1.Models;
 
 namespace LAB__1.Models
 {
-    public class BasicCalculator : AbstractCalculator, IBasicOperations
+    public class BasicCalculator : IBasicOperations
     {
+        private double result = 0;
+        
+        public double Result
+        {
+            get { return result; }
+            set { result = value; }
+        }
         public Memory memory = new Memory();
 
         public double Add(double a, double b)
@@ -19,14 +26,15 @@ namespace LAB__1.Models
             return memory.Save(Result);
         }
 
-        public double Multiply(double a, double b)
+        public double Add(double a)
         {
-            Result = a * b;
+            Result += a;
             return memory.Save(Result);
         }
-        public double Divide(double a, double b)
+
+        public double Subtract(double a)
         {
-            Result = a / b;
+            Result -= a;
             return memory.Save(Result);
         }
     }

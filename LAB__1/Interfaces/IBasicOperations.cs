@@ -4,7 +4,7 @@ namespace LAB__1.Interfaces
     {
         double Add(double a, double b);
         double Subtract(double a, double b);
-        double Multiply(double a, double b);
-        double Divide(double a, double b);
+        double Add(double a);
+        double Subtract(double a);
     }
 }
