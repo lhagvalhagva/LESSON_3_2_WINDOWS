@@ -1,8 +1,12 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using CalculatorLibrary;    
+using CalculatorLibrary.Memory;
 
 namespace Calculator
 {
@@ -10,7 +14,9 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World");
-        }
+        public Calculator calculator = new Calculator();
+        Console.WriteLine(calculator.Add(1, 2));
+            
+    }
     }
 }
