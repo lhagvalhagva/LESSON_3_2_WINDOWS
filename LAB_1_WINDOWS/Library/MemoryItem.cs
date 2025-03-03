@@ -8,9 +8,9 @@ namespace CalculatorLibrary.Memory
 {
     public class MemoryItem
     {
-        public int value { get; set; }
+        public int Value { get; set; }
         public MemoryItem( int value) {
-            this.value = value;
+            Value = value;
         }
     }
 }

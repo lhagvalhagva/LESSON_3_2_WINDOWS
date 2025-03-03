@@ -17,16 +17,25 @@ namespace CalculatorLibrary.Memory
 
         public List<MemoryItem> GetAll()
         {
-            return memoryItems;
+            List<MemoryItem> allMemoryItems = new List<MemoryItem>();
+
+            for (int i = 0; i < memoryItems.Count; i++)
+            {
+                allMemoryItems.Add(memoryItems[i]);
+            }
+
+            return allMemoryItems;
         }
-        public MemoryItem GetLast()
+
+        public int GetLast()
         {
-            return memoryItems.Last();
+            return memoryItems.Last().Value;
         }
-        public void Save(MemoryItem memoryItem)
+        public void Save(int result)
         {
-            memoryItems.Add(memoryItem);
+            memoryItems.Add(new MemoryItem(result));
         }
+
         public void Clear()
         {
             memoryItems.Clear();

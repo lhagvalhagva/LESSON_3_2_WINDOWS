@@ -13,12 +13,15 @@ namespace CalculatorLibrary.Memory
         public int Add(int a, int b)
         {
             result = a + b;
-            return memory.Save(result);
+            memory.Save(result);
+            return result;
         }
+
         public int Subtract(int a, int b)
         {
             result = a - b;
-            return memory.Save(result);
+            memory.Save(result);
+            return result;
         }
     }
 }
