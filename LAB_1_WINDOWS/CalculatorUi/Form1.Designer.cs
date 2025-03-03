@@ -53,6 +53,8 @@ namespace CalculatorUi
             this.memoryRecallButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.memoryDisplayTextBox = new System.Windows.Forms.TextBox();
+            this.memoryPlusButton = new System.Windows.Forms.Button();
+            this.memoryMinusButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // displayTextBox
@@ -241,6 +243,24 @@ namespace CalculatorUi
             this.memoryDisplayTextBox.Text = "0";
             this.memoryDisplayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // memoryPlusButton
+            // 
+            this.memoryPlusButton.Location = new System.Drawing.Point(540, 58);
+            this.memoryPlusButton.Name = "memoryPlusButton";
+            this.memoryPlusButton.Size = new System.Drawing.Size(100, 49);
+            this.memoryPlusButton.TabIndex = 23;
+            this.memoryPlusButton.Text = "M+";
+            this.memoryPlusButton.Click += new System.EventHandler(this.MemoryPlusButton_Click);
+            // 
+            // memoryMinusButton
+            // 
+            this.memoryMinusButton.Location = new System.Drawing.Point(646, 56);
+            this.memoryMinusButton.Name = "memoryMinusButton";
+            this.memoryMinusButton.Size = new System.Drawing.Size(100, 49);
+            this.memoryMinusButton.TabIndex = 24;
+            this.memoryMinusButton.Text = "M-";
+            this.memoryMinusButton.Click += new System.EventHandler(this.MemoryMinusButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -267,6 +287,8 @@ namespace CalculatorUi
             this.Controls.Add(this.memorySaveButton);
             this.Controls.Add(this.memoryRecallButton);
             this.Controls.Add(this.memoryDisplayTextBox);
+            this.Controls.Add(this.memoryPlusButton);
+            this.Controls.Add(this.memoryMinusButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -346,6 +368,16 @@ namespace CalculatorUi
         /// Санах ойн дэлгэц
         /// </summary>
         private System.Windows.Forms.TextBox memoryDisplayTextBox;
+
+        /// <summary>
+        /// Санах ойд нэмэх товчлуур (M+)
+        /// </summary>
+        private System.Windows.Forms.Button memoryPlusButton;
+
+        /// <summary>
+        /// Санах ойгоос хасах товчлуур (M-)
+        /// </summary>
+        private System.Windows.Forms.Button memoryMinusButton;
     }
 }
 

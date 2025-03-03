@@ -153,6 +153,78 @@ namespace CalculatorUi
         }
 
         /// <summary>
+        /// Санах ойд нэмэх товчлуур (M+) дарагдах үед дуудагдах event handler
+        /// Одоогийн утгыг санах ойн сүүлийн утган дээр нэмнэ
+        /// </summary>
+        /// <param name="sender">Дарагдсан товчлуур</param>
+        /// <param name="e">Event аргумент</param>
+        private void MemoryPlusButton_Click(object sender, EventArgs e)
+        {
+            if (currentNumber != "")
+            {
+                try
+                {
+                    int currentValue = int.Parse(currentNumber);
+                    var allMemory = calculator.memory.GetAll();
+                    
+                    if (allMemory.Count > 0)
+                    {
+                        int lastValue = calculator.memory.GetLast();
+                        int newValue = lastValue + currentValue;
+                        calculator.memory.Save(newValue);
+                    }
+                    else
+                    {
+                        calculator.memory.Save(currentValue);
+                    }
+
+                    memoryDisplayTextBox.Text = calculator.memory.GetLast().ToString();
+                    ShowAllHistory();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("M+ үйлдэл хийх үед алдаа гарлаа: " + ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Санах ойгоос хасах товчлуур (M-) дарагдах үед дуудагдах event handler
+        /// Одоогийн утгыг санах ойн сүүлийн утгаас хасна
+        /// </summary>
+        /// <param name="sender">Дарагдсан товчлуур</param>
+        /// <param name="e">Event аргумент</param>
+        private void MemoryMinusButton_Click(object sender, EventArgs e)
+        {
+            if (currentNumber != "")
+            {
+                try
+                {
+                    int currentValue = int.Parse(currentNumber);
+                    var allMemory = calculator.memory.GetAll();
+                    
+                    if (allMemory.Count > 0)
+                    {
+                        int lastValue = calculator.memory.GetLast();
+                        int newValue = lastValue - currentValue;
+                        calculator.memory.Save(newValue);
+                    }
+                    else
+                    {
+                        calculator.memory.Save(-currentValue);
+                    }
+
+                    memoryDisplayTextBox.Text = calculator.memory.GetLast().ToString();
+                    ShowAllHistory();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("M- үйлдэл хийх үед алдаа гарлаа: " + ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
         /// Үндсэн дэлгэцийн утгыг шинэчлэх
         /// </summary>
         /// <param name="value">Харуулах утга</param>
