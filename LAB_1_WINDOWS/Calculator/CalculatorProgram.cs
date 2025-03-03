@@ -15,10 +15,9 @@ namespace CalculatorProgram
     {
         static void Main(string[] args)
         {
-        
             Calculator calculator = new Calculator();
-            Console.WriteLine("Result: " + calculator.Add(2,3));
-            Console.WriteLine("Result: " + calculator.Subtract(5, 3));
+            Console.WriteLine("Result-add: " + calculator.Add(2,3));
+            Console.WriteLine("Result-sub: " + calculator.Subtract(5, 3));
             var history = calculator.memory.GetAll();
             Console.WriteLine("History:");
             for (int i = 0; i < history.Count; i++)
