@@ -11,7 +11,7 @@ namespace CalculatorLibrary.Memory
         /// Calculator классын байгуулагч функц
         /// </summary>
         public Calculator() { 
-        
+            result = 0;
         }
         /// <summary>
         /// Тооцооны үр дүнг хадгалах санах ой
@@ -37,6 +37,18 @@ namespace CalculatorLibrary.Memory
         }
 
         /// <summary>
+        /// Нэг тоог нэмэх үйлдэл
+        /// </summary>
+        /// <param name="a">Нэмэх тоо</param>
+        /// <returns>Нэмэх үйлдлийн үр дүн</returns>
+        public int Add(int a)
+        {
+            result = result + a;
+            memory.Save(result);
+            return result;
+        }
+
+        /// <summary>
         /// Хоёр тооны ялгаврыг олох үйлдэл
         /// </summary>
         /// <param name="a">Эхний тоо</param>
@@ -45,6 +57,18 @@ namespace CalculatorLibrary.Memory
         public int Subtract(int a, int b)
         {
             result = a - b;
+            memory.Save(result);
+            return result;
+        }
+
+        /// <summary>
+        /// Нэг тоог хасах үйлдэл
+        /// </summary>
+        /// <param name="a">Хасах тоо</param>
+        /// <returns>Хасах үйлдлийн үр дүн</returns>
+        public int Subtract(int a)
+        {
+            result = result - a;
             memory.Save(result);
             return result;
         }

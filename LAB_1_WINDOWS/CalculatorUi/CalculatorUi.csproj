@@ -80,10 +80,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Calculator\Calculator.csproj">
-      <Project>{54741aa1-9e5e-4fce-8f98-912f08a85672}</Project>
-      <Name>Calculator</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Library\CalculatorLibrary.csproj">
       <Project>{3b19c631-9de4-c3bc-ba22-ebf0a4a89e8a}</Project>
       <Name>CalculatorLibrary</Name>

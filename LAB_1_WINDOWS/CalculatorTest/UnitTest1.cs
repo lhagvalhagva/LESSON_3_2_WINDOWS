@@ -7,9 +7,6 @@ using CalculatorLibrary.Memory;
 
 namespace CalculatorTest
 {
-    /// <summary>
-    /// Тооны машины програмын нэгж тестүүд
-    /// </summary>
     [TestClass]
     public class UnitTest1
     {
@@ -19,37 +16,12 @@ namespace CalculatorTest
         private Calculator calculator;
 
         /// <summary>
-        /// Console output-г барих StringWriter объект
-        /// </summary>
-        private StringWriter stringWriter;
-
-        /// <summary>
-        /// Анхны Console output-г хадгалах хувьсагч
-        /// </summary>
-        private TextWriter originalOutput;
-
-        /// <summary>
         /// Тест бүрийн өмнө ажиллах setup функц
         /// </summary>
         [TestInitialize]
         public void Setup()
         {
             calculator = new Calculator();
-            // Console output-г барихын тулд StringWriter ашиглана
-            stringWriter = new StringWriter();
-            originalOutput = Console.Out;
-            Console.SetOut(stringWriter);
-        }
-
-        /// <summary>
-        /// Тест бүрийн дараа ажиллах cleanup функц
-        /// </summary>
-        [TestCleanup]
-        public void Cleanup()
-        {
-            // Console output-г буцаан хэвийн төлөвт оруулна
-            Console.SetOut(originalOutput);
-            stringWriter.Dispose();
         }
 
         /// <summary>
@@ -58,8 +30,21 @@ namespace CalculatorTest
         [TestMethod]
         public void NemehVildel()
         {
-            calculator.Add(2, 3);
-            Assert.AreEqual(5, calculator.memory.GetLast());
+            calculator.Add(2);
+            calculator.Add(3);
+            Assert.AreEqual(5, calculator.result);
+        }
+
+        /// <summary>
+        /// Тоо нэмж хасах товч 
+        /// Нэг параметртэй нэмэх үйлдлийг шалгах тест
+        /// </summary>
+        [TestMethod]
+        public void NemehVildelNegParametr()
+        {
+            calculator.Add(5);      
+            calculator.Add(-4);       
+            Assert.AreEqual(1, calculator.result);
         }
 
         /// <summary>
@@ -68,8 +53,36 @@ namespace CalculatorTest
         [TestMethod]
         public void HasahVildel()
         {
-            calculator.Subtract(5, 3);
-            Assert.AreEqual(2, calculator.memory.GetLast());
+            calculator.Add(5);
+            calculator.Subtract(-3);
+            Assert.AreEqual(8, calculator.result);
+        }
+
+        /// <summary>
+        /// Нэг параметртэй хасах үйлдлийг шалгах тест
+        /// </summary>
+        [TestMethod]
+        public void HasahVildelNegParametr()
+        {
+            calculator.Add(15);  
+            calculator.Subtract(7);  
+            Assert.AreEqual(8, calculator.result);
+        }
+
+        /// <summary>
+        /// Цэвэрлэх үйлдлийг шалгах тест
+        /// </summary>
+        [TestMethod]
+        public void ClearVildel()
+        {
+            calculator.Add(5);
+            calculator.Add(3);
+            Assert.AreEqual(8, calculator.result);
+
+            calculator.result = 0;
+            calculator.memory.Clear();
+            Assert.AreEqual(0, calculator.result);
+            Assert.AreEqual(0, calculator.memory.AllMemoryItems.Count);
         }
 
         /// <summary>
@@ -78,9 +91,12 @@ namespace CalculatorTest
         [TestMethod]
         public void ClearVildel2()
         {
-            calculator.Add(2, 3);
+            calculator.Add(2);
+            calculator.Add(3);
             calculator.memory.Clear();
-            Assert.AreEqual(0, calculator.memory.GetAll().Count);
+            Assert.AreEqual(0, calculator.memory.AllMemoryItems.Count);
+            // Memory цэвэрлэгдсэн ч result хэвээр байх ёстой
+            Assert.AreEqual(5, calculator.result);
         }
 
         /// <summary>
@@ -89,9 +105,10 @@ namespace CalculatorTest
         [TestMethod]
         public void LastVildel()
         {
-            calculator.Add(2, 3);
-            calculator.Add(5, 3);
-            Assert.AreEqual(8, calculator.memory.GetLast());
+            calculator.Add(2);
+            calculator.Add(3);
+            calculator.Add(3);
+            Assert.AreEqual(8, calculator.result);
         }
 
         /// <summary>
@@ -102,6 +119,7 @@ namespace CalculatorTest
         {
             calculator.memory.Save(3);
             Assert.AreEqual(3, calculator.memory.GetLast());
+            Assert.AreEqual(0, calculator.result);
         }
 
 
@@ -112,18 +130,18 @@ namespace CalculatorTest
         [TestMethod]
         public void GetAllHistory()
         {
-            // Arrange
             Calculator calc = new Calculator();
 
-            // Act
-            calc.Add(2, 3);
-            calc.Subtract(5, 3);
-            var history = calc.memory.GetAll();
+            calc.Add(2);
+            calc.Add(3);
+            calc.Subtract(3);
+            var history = calc.memory.AllMemoryItems;
 
-            // Assert
-            Assert.AreEqual(2, history.Count);
-            Assert.AreEqual(5, history[0].Value);
-            Assert.AreEqual(2, history[1].Value);
+            Assert.AreEqual(3, history.Count);
+            Assert.AreEqual(2, history[0].Value);
+            Assert.AreEqual(5, history[1].Value);
+            Assert.AreEqual(2, history[2].Value);
+            Assert.AreEqual(2, calc.result);
         }
 
         /// <summary>
@@ -134,17 +152,16 @@ namespace CalculatorTest
         [TestMethod]
         public void ClearVildel3()
         {
-            // Arrange
             Calculator calc = new Calculator();
 
-            // Act
-            calc.Add(2, 3);
-            calc.Subtract(5, 3);
+            calc.Add(2);
+            calc.Add(3);
+            calc.Subtract(3);
             calc.memory.Clear();
-            var history = calc.memory.GetAll();
+            var history = calc.memory.AllMemoryItems;
 
-            // Assert
             Assert.AreEqual(0, history.Count);
+            Assert.AreEqual(2, calc.result);
         }
     }
 }

@@ -21,11 +21,6 @@ namespace CalculatorUi
         private string currentNumber = "";
 
         /// <summary>
-        /// Эхний оруулсан тоо
-        /// </summary>
-        private int? firstNumber = null;
-
-        /// <summary>
         /// Одоогийн сонгосон үйлдэл (+, -)
         /// </summary>
         private string currentOperation = "";
@@ -64,19 +59,17 @@ namespace CalculatorUi
             if (currentNumber != "")
             {
                 Button button = (Button)sender;
-                firstNumber = int.Parse(currentNumber);
+                int number = int.Parse(currentNumber);
+                
+                if (currentOperation == "")
+                {
+                    calculator.result = number;
+                }
+                
                 currentOperation = button.Text;
                 currentNumber = "";
                 
-                try
-                {
-                    var allMemory = calculator.memory.GetAll();
-                    if (allMemory.Count > 0)
-                    {
-                        memoryDisplayTextBox.Text = calculator.memory.GetLast().ToString();
-                    }
-                }
-                catch { }
+                memoryDisplayTextBox.Text = calculator.result.ToString();
             }
         }
 
@@ -88,41 +81,40 @@ namespace CalculatorUi
         /// <param name="e">Event аргумент</param>
         private void EqualsButton_Click(object sender, EventArgs e)
         {
-            if (firstNumber != null && currentNumber != "")
+            if (currentOperation != "")
             {
                 try
                 {
-                    int secondNumber = int.Parse(currentNumber);
-                    int result = 0;
-                    
+                    int secondNumber = 0;
+                    if (currentNumber != "")
+                    {
+                        secondNumber = int.Parse(currentNumber);
+                    }
+                    else
+                    {
+                        secondNumber = calculator.result;
+                    }
 
                     switch (currentOperation)
                     {
                         case "+":
-                            result = calculator.Add((int)firstNumber, secondNumber);
+                            calculator.Add(secondNumber);
                             break;
                         case "-":
-                            result = calculator.Subtract((int)firstNumber, secondNumber);
+                            calculator.Subtract(secondNumber);
                             break;
                     }
 
-                    UpdateDisplay(result.ToString());
-                    
-                    var allMemory = calculator.memory.GetAll();
-                    if (allMemory.Count > 0)
-                    {
-                        memoryDisplayTextBox.Text = calculator.memory.GetLast().ToString();
-                    }
+                    UpdateDisplay(calculator.result.ToString());
+                    memoryDisplayTextBox.Text = calculator.result.ToString();
                     ShowAllHistory();
-                    
-                    firstNumber = null;
-                    currentNumber = result.ToString();
+
+                    currentNumber = calculator.result.ToString();
                     currentOperation = "";
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Тооцоолол хийх үед алдаа гарлаа: " + ex.Message);
-                    ClearButton_Click(null, null);
                 }
             }
         }
@@ -136,8 +128,9 @@ namespace CalculatorUi
         private void ClearButton_Click(object sender, EventArgs e)
         {
             currentNumber = "0";
-            firstNumber = null;
             currentOperation = "";
+            calculator.result = 0;
+            calculator.memory.Clear();
             UpdateDisplay("0");
         }
 
@@ -154,7 +147,7 @@ namespace CalculatorUi
 
         /// <summary>
         /// Санах ойд нэмэх товчлуур (M+) дарагдах үед дуудагдах event handler
-        /// Одоогийн утгыг санах ойн сүүлийн утган дээр нэмнэ
+        /// Одоогийн утгыг санах ойн сүүлийн утганд нэмнэ
         /// </summary>
         /// <param name="sender">Дарагдсан товчлуур</param>
         /// <param name="e">Event аргумент</param>
@@ -165,21 +158,21 @@ namespace CalculatorUi
                 try
                 {
                     int currentValue = int.Parse(currentNumber);
-                    var allMemory = calculator.memory.GetAll();
+                    var allMemory = calculator.memory.AllMemoryItems;
                     
                     if (allMemory.Count > 0)
                     {
-                        int lastValue = calculator.memory.GetLast();
-                        int newValue = lastValue + currentValue;
-                        calculator.memory.Save(newValue);
+                        calculator.Add(currentValue);
                     }
                     else
                     {
-                        calculator.memory.Save(currentValue);
+                        calculator.Add(currentValue);
                     }
 
-                    memoryDisplayTextBox.Text = calculator.memory.GetLast().ToString();
+                    memoryDisplayTextBox.Text = calculator.result.ToString();
                     ShowAllHistory();
+                    
+                    currentNumber = "";
                 }
                 catch (Exception ex)
                 {
@@ -201,21 +194,21 @@ namespace CalculatorUi
                 try
                 {
                     int currentValue = int.Parse(currentNumber);
-                    var allMemory = calculator.memory.GetAll();
+                    var allMemory = calculator.memory.AllMemoryItems;
                     
                     if (allMemory.Count > 0)
                     {
-                        int lastValue = calculator.memory.GetLast();
-                        int newValue = lastValue - currentValue;
-                        calculator.memory.Save(newValue);
+                        calculator.Subtract(currentValue);
                     }
                     else
                     {
-                        calculator.memory.Save(-currentValue);
+                        calculator.Add(-currentValue);
                     }
 
-                    memoryDisplayTextBox.Text = calculator.memory.GetLast().ToString();
+                    memoryDisplayTextBox.Text = calculator.result.ToString();
                     ShowAllHistory();
+                    
+                    currentNumber = "";
                 }
                 catch (Exception ex)
                 {
@@ -238,7 +231,7 @@ namespace CalculatorUi
         /// </summary>
         private void ShowAllHistory()
         {
-            var allHistory = calculator.memory.GetAll();
+            var allHistory = calculator.memory.AllMemoryItems;
             historyListBox.Items.Clear();
             
             foreach (var item in allHistory)
@@ -246,5 +239,6 @@ namespace CalculatorUi
                 historyListBox.Items.Add($"Result: {item.Value}");
             }
         }
+
     }
 }

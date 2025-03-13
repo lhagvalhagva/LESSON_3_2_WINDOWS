@@ -12,19 +12,17 @@ namespace CalculatorLibrary
     interface IOperator
     {
         /// <summary>
-        /// Хоёр тоог нэмэх үйлдэл
+        /// Нэг тоог нэмэх үйлдэл
         /// </summary>
-        /// <param name="a">Эхний тоо</param>
-        /// <param name="b">Хоёр дахь тоо</param>
+        /// <param name="a">Нэмэх тоо</param>
         /// <returns>Нэмэх үйлдлийн үр дүн</returns>
-        public int Add(int a, int b);
+        public int Add(int a);
 
         /// <summary>
-        /// Хоёр тооны ялгаврыг олох үйлдэл
+        /// Нэг тоог хасах үйлдэл
         /// </summary>
-        /// <param name="a">Эхний тоо</param>
-        /// <param name="b">Хасах тоо</param>
+        /// <param name="a">Хасах тоо</param>
         /// <returns>Хасах үйлдлийн үр дүн</returns>
-        public int Subtract(int a, int b);
+        public int Subtract(int a);
     }
 }

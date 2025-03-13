@@ -18,7 +18,7 @@ namespace CalculatorProgram
             Calculator calculator = new Calculator();
             Console.WriteLine("Result-add: " + calculator.Add(2,3));
             Console.WriteLine("Result-sub: " + calculator.Subtract(5, 3));
-            var history = calculator.memory.GetAll();
+            var history = calculator.memory.AllMemoryItems;
             Console.WriteLine("History:");
             for (int i = 0; i < history.Count; i++)
             {
@@ -26,11 +26,11 @@ namespace CalculatorProgram
             }
             Console.WriteLine("Last: " + calculator.memory.GetLast());
             calculator.memory.Clear();
-            var history2 = calculator.memory.GetAll();
+            var history2 = calculator.memory.AllMemoryItems;
             Console.WriteLine("History-2:");
             for (int i = 0; i < history2.Count; i++)
             {
-                Console.WriteLine(history[i].Value);
+                Console.WriteLine(history2[i].Value);
             }
         }
     }

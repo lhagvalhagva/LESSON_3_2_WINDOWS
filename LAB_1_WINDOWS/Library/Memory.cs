@@ -9,8 +9,18 @@ namespace CalculatorLibrary.Memory
     /// <summary>
     /// Тооны машины тооцооны үр дүнг хадгалах санах ойн класс
     /// </summary>
+    /// 
+
     public class Memory
     {
+        /// <summary>
+        /// Санах ойд хадгалагдсан бүх утгыг авах property
+        /// </summary>
+        public List<MemoryItem> AllMemoryItems
+        {
+            get { return new List<MemoryItem>(memoryItems); }
+        }
+
         /// <summary>
         /// Санах ойд хадгалагдсан утгуудын жагсаалт
         /// </summary>
@@ -22,22 +32,6 @@ namespace CalculatorLibrary.Memory
         public Memory()
         {
             memoryItems = new List<MemoryItem>();
-        }
-
-        /// <summary>
-        /// Санах ойд хадгалагдсан бүх утгыг авах
-        /// </summary>
-        /// <returns>Хадгалагдсан бүх утгын жагсаалт</returns>
-        public List<MemoryItem> GetAll()
-        {
-            List<MemoryItem> allMemoryItems = new List<MemoryItem>();
-
-            for (int i = 0; i < memoryItems.Count; i++)
-            {
-                allMemoryItems.Add(memoryItems[i]);
-            }
-
-            return allMemoryItems;
         }
 
         /// <summary>
