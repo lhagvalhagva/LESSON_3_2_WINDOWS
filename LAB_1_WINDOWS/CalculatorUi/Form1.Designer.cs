@@ -50,7 +50,6 @@ namespace CalculatorUi
             this.memoryClearButton = new System.Windows.Forms.Button();
             this.historyListBox = new System.Windows.Forms.ListBox();
             this.memorySaveButton = new System.Windows.Forms.Button();
-            this.memoryRecallButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.memoryDisplayTextBox = new System.Windows.Forms.TextBox();
             this.memoryPlusButton = new System.Windows.Forms.Button();
@@ -214,17 +213,12 @@ namespace CalculatorUi
             // 
             // memorySaveButton
             // 
-            this.memorySaveButton.Location = new System.Drawing.Point(0, 0);
+            this.memorySaveButton.Location = new System.Drawing.Point(434, 58);
             this.memorySaveButton.Name = "memorySaveButton";
-            this.memorySaveButton.Size = new System.Drawing.Size(75, 23);
+            this.memorySaveButton.Size = new System.Drawing.Size(100, 49);
             this.memorySaveButton.TabIndex = 21;
-            // 
-            // memoryRecallButton
-            // 
-            this.memoryRecallButton.Location = new System.Drawing.Point(0, 0);
-            this.memoryRecallButton.Name = "memoryRecallButton";
-            this.memoryRecallButton.Size = new System.Drawing.Size(75, 23);
-            this.memoryRecallButton.TabIndex = 22;
+            this.memorySaveButton.Text = "MS";
+            this.memorySaveButton.Click += new System.EventHandler(this.MemorySaveButton_Click);
             // 
             // label1
             // 
@@ -265,7 +259,11 @@ namespace CalculatorUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 604);
+            this.ClientSize = new System.Drawing.Size(910, 604);
+            this.Controls.Add(this.memoryMinusButton);
+            this.Controls.Add(this.memoryPlusButton);
+            this.Controls.Add(this.memorySaveButton);
+            this.Controls.Add(this.memoryDisplayTextBox);
             this.Controls.Add(this.historyListBox);
             this.Controls.Add(this.memoryClearButton);
             this.Controls.Add(this.label1);
@@ -284,11 +282,6 @@ namespace CalculatorUi
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.displayTextBox);
-            this.Controls.Add(this.memorySaveButton);
-            this.Controls.Add(this.memoryRecallButton);
-            this.Controls.Add(this.memoryDisplayTextBox);
-            this.Controls.Add(this.memoryPlusButton);
-            this.Controls.Add(this.memoryMinusButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -340,7 +333,7 @@ namespace CalculatorUi
         private System.Windows.Forms.Button buttonClear;
 
         /// <summary>
-        /// Санах ойг цэвэрлэх товчлуур
+        /// Санах ойг цэвэрлэх товчлуур (MC)
         /// </summary>
         private System.Windows.Forms.Button memoryClearButton;
 
@@ -350,14 +343,9 @@ namespace CalculatorUi
         private System.Windows.Forms.ListBox historyListBox;
 
         /// <summary>
-        /// Санах ойд хадгалах товчлуур
+        /// Санах ойд хадгалах товчлуур (MS)
         /// </summary>
         private System.Windows.Forms.Button memorySaveButton;
-
-        /// <summary>
-        /// Санах ойгоос дуудах товчлуур
-        /// </summary>
-        private System.Windows.Forms.Button memoryRecallButton;
 
         /// <summary>
         /// Memory текст

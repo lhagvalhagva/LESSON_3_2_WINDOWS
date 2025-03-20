@@ -22,6 +22,7 @@ namespace CalculatorLibrary.Memory
         /// <param name="value">Хадгалах утга</param>
         public MemoryItem(int value) {
             Value = value;
+
         }
     }
 }

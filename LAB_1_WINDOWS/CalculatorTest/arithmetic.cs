@@ -40,7 +40,7 @@ namespace CalculatorTest
         /// Нэг параметртэй нэмэх үйлдлийг шалгах тест
         /// </summary>
         [TestMethod]
-        public void NemehVildelNegParametr()
+        public void NemehVildel2()
         {
             calculator.Add(5);      
             calculator.Add(-4);       
@@ -62,7 +62,7 @@ namespace CalculatorTest
         /// Нэг параметртэй хасах үйлдлийг шалгах тест
         /// </summary>
         [TestMethod]
-        public void HasahVildelNegParametr()
+        public void HasahVildel2()
         {
             calculator.Add(15);  
             calculator.Subtract(7);  

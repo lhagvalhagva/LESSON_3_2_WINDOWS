@@ -1,7 +1,7 @@
 ﻿using CalculatorLibrary.Memory;
 
 namespace CalculatorLibrary.Memory
-{ 
+{
     /// <summary>
     /// Энгийн тооны машины үндсэн үйлдлүүдийг гүйцэтгэх класс
     /// </summary>
@@ -17,7 +17,7 @@ namespace CalculatorLibrary.Memory
         /// Тооцооны үр дүнг хадгалах санах ой
         /// </summary>
         public Memory memory = new Memory();
-
+        
         /// <summary>
         /// Сүүлийн тооцооны үр дүн
         /// </summary>
@@ -32,7 +32,6 @@ namespace CalculatorLibrary.Memory
         public int Add(int a, int b)
         {
             result = a + b;
-            memory.Save(result);
             return result;
         }
 
@@ -44,7 +43,6 @@ namespace CalculatorLibrary.Memory
         public int Add(int a)
         {
             result = result + a;
-            memory.Save(result);
             return result;
         }
 
@@ -57,7 +55,6 @@ namespace CalculatorLibrary.Memory
         public int Subtract(int a, int b)
         {
             result = a - b;
-            memory.Save(result);
             return result;
         }
 
@@ -69,7 +66,6 @@ namespace CalculatorLibrary.Memory
         public int Subtract(int a)
         {
             result = result - a;
-            memory.Save(result);
             return result;
         }
     }

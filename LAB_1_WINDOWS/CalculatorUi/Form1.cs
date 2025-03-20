@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using CalculatorLibrary.Memory;
+using System.Collections.Generic;
 
 namespace CalculatorUi
 {
@@ -26,6 +27,11 @@ namespace CalculatorUi
         private string currentOperation = "";
 
         /// <summary>
+        /// Сонгогдсон санах ойн элементийн индекс
+        /// </summary>
+        private int selectedMemoryIndex = -1;
+
+        /// <summary>
         /// Форм үүсгэх үед анхны утгуудыг оноох
         /// </summary>
         public Form1()
@@ -34,6 +40,16 @@ namespace CalculatorUi
             calculator = new Calculator();
             UpdateDisplay("0");
             ShowAllHistory();
+            
+            historyListBox.SelectedIndexChanged += HistoryListBox_SelectedIndexChanged;
+        }
+
+        /// <summary>
+        /// Санах ойн элемент сонгох үед дуудагдах handler
+        /// </summary>
+        private void HistoryListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedMemoryIndex = historyListBox.SelectedIndex;
         }
 
         /// <summary>
@@ -85,29 +101,21 @@ namespace CalculatorUi
             {
                 try
                 {
-                    int secondNumber = 0;
-                    if (currentNumber != "")
-                    {
-                        secondNumber = int.Parse(currentNumber);
-                    }
-                    else
-                    {
-                        secondNumber = calculator.result;
-                    }
+                    int nemegdehvvn = 0;
+                    nemegdehvvn = currentNumber != "" ? int.Parse(currentNumber) : calculator.result;
 
                     switch (currentOperation)
                     {
                         case "+":
-                            calculator.Add(secondNumber);
+                            calculator.Add(nemegdehvvn);
                             break;
                         case "-":
-                            calculator.Subtract(secondNumber);
+                            calculator.Subtract(nemegdehvvn);
                             break;
                     }
 
                     UpdateDisplay(calculator.result.ToString());
                     memoryDisplayTextBox.Text = calculator.result.ToString();
-                    ShowAllHistory();
 
                     currentNumber = calculator.result.ToString();
                     currentOperation = "";
@@ -130,8 +138,31 @@ namespace CalculatorUi
             currentNumber = "0";
             currentOperation = "";
             calculator.result = 0;
-            calculator.memory.Clear();
             UpdateDisplay("0");
+        }
+
+        /// <summary>
+        /// Санах ойд хадгалах товчлуур (MS) дарагдах үед дуудагдах event handler
+        /// </summary>
+        private void MemorySaveButton_Click(object sender, EventArgs e)
+        {
+            int valueToSave;
+            
+            if (currentNumber != "")
+            {
+                valueToSave = int.Parse(currentNumber);
+            }
+            else
+            {
+                valueToSave = calculator.result;
+            }
+            
+            calculator.memory.Save(valueToSave);
+            
+            ShowAllHistory();
+            
+            selectedMemoryIndex = calculator.memory.AllMemoryItems.Count - 1;
+            historyListBox.SelectedIndex = selectedMemoryIndex;
         }
 
         /// <summary>
@@ -143,14 +174,13 @@ namespace CalculatorUi
         {
             calculator.memory.Clear();
             ShowAllHistory();
+            selectedMemoryIndex = -1;
         }
 
         /// <summary>
         /// Санах ойд нэмэх товчлуур (M+) дарагдах үед дуудагдах event handler
-        /// Одоогийн утгыг санах ойн сүүлийн утганд нэмнэ
+        /// Одоогийн утгыг сонгосон санах ойн утганд нэмнэ
         /// </summary>
-        /// <param name="sender">Дарагдсан товчлуур</param>
-        /// <param name="e">Event аргумент</param>
         private void MemoryPlusButton_Click(object sender, EventArgs e)
         {
             if (currentNumber != "")
@@ -160,33 +190,36 @@ namespace CalculatorUi
                     int currentValue = int.Parse(currentNumber);
                     var allMemory = calculator.memory.AllMemoryItems;
                     
-                    if (allMemory.Count > 0)
+                    if (selectedMemoryIndex >= 0 && selectedMemoryIndex < allMemory.Count)
                     {
-                        calculator.Add(currentValue);
-                    }
+                        
+                        int selectedValue = allMemory[selectedMemoryIndex].Value;
+            
+                        int newValue = selectedValue + currentValue;
+                        
+                        UpdateSelectedMemoryItem(newValue);
+                        
+                    }   
                     else
                     {
-                        calculator.Add(currentValue);
+                        MessageBox.Show("Та санах ойн элемент сонгоогүй байна!");
                     }
-
-                    memoryDisplayTextBox.Text = calculator.result.ToString();
-                    ShowAllHistory();
-                    
-                    currentNumber = "";
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("M+ үйлдэл хийх үед алдаа гарлаа: " + ex.Message);
                 }
             }
+            else
+            {
+                MessageBox.Show("Та эхлээд тоо оруулна уу!");
+            }
         }
 
         /// <summary>
         /// Санах ойгоос хасах товчлуур (M-) дарагдах үед дуудагдах event handler
-        /// Одоогийн утгыг санах ойн сүүлийн утгаас хасна
+        /// Одоогийн утгыг сонгосон санах ойн утгаас хасна
         /// </summary>
-        /// <param name="sender">Дарагдсан товчлуур</param>
-        /// <param name="e">Event аргумент</param>
         private void MemoryMinusButton_Click(object sender, EventArgs e)
         {
             if (currentNumber != "")
@@ -196,24 +229,28 @@ namespace CalculatorUi
                     int currentValue = int.Parse(currentNumber);
                     var allMemory = calculator.memory.AllMemoryItems;
                     
-                    if (allMemory.Count > 0)
+                    if (selectedMemoryIndex >= 0 && selectedMemoryIndex < allMemory.Count)
                     {
-                        calculator.Subtract(currentValue);
+                        int selectedValue = allMemory[selectedMemoryIndex].Value;
+                        
+                        int newValue = selectedValue - currentValue;
+                        
+                        UpdateSelectedMemoryItem(newValue);
+                        
                     }
                     else
                     {
-                        calculator.Add(-currentValue);
+                        MessageBox.Show("Та санах ойн элемент сонгоогүй байна!");
                     }
-
-                    memoryDisplayTextBox.Text = calculator.result.ToString();
-                    ShowAllHistory();
-                    
-                    currentNumber = "";
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("M- үйлдэл хийх үед алдаа гарлаа: " + ex.Message);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Та эхлээд тоо оруулна уу!");
             }
         }
 
@@ -234,9 +271,53 @@ namespace CalculatorUi
             var allHistory = calculator.memory.AllMemoryItems;
             historyListBox.Items.Clear();
             
-            foreach (var item in allHistory)
+            for (int i = 0; i < allHistory.Count; i++)
             {
-                historyListBox.Items.Add($"Result: {item.Value}");
+                historyListBox.Items.Add($"[{i+1}] Value: {allHistory[i].Value}");
+            }
+            
+            if (selectedMemoryIndex >= 0 && selectedMemoryIndex < historyListBox.Items.Count)
+            {
+                historyListBox.SelectedIndex = selectedMemoryIndex;
+            }
+        }
+        
+        /// <summary>
+        /// Сонгогдсон санах ойн элементийг шинэчлэх
+        /// </summary>
+        /// <param name="newValue">Шинэ утга</param>
+        private void UpdateSelectedMemoryItem(int newValue)
+        {
+            var allMemory = calculator.memory.AllMemoryItems;
+            
+            if (selectedMemoryIndex >= 0 && selectedMemoryIndex < allMemory.Count)
+            {
+                List<int> tempValues = new List<int>();
+                for (int i = 0; i < allMemory.Count; i++)
+                {
+                    if (i == selectedMemoryIndex)
+                    {
+                        tempValues.Add(newValue);
+                    }
+                    else
+                    {
+                        tempValues.Add(allMemory[i].Value);
+                    }
+                }
+                
+                calculator.memory.Clear();
+                
+                foreach (int value in tempValues)
+                {
+                    calculator.memory.Save(value);
+                }
+                
+                ShowAllHistory();
+                
+                if (selectedMemoryIndex < historyListBox.Items.Count)
+                {
+                    historyListBox.SelectedIndex = selectedMemoryIndex;
+                }
             }
         }
 
